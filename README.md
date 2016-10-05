@@ -2,8 +2,9 @@
 ![トップ画像](./img/top.jpg)  
 
 ## 概要  
-シリアル通信経由でLEDドットマトリックスを簡単に制御できるモジュールです。
+シリアル通信経由で表示内容の制御が簡単に行えるLEDドットマトリックスモジュールです。  
 
+![システム構成](./img/system.jpg)
 
 ## <ライセンスにおける注意事項>  
 [![CC BY](https://image.jimcdn.com/app/cms/image/transf/none/path/s21a6c180c821a02c/image/i6ce073b1f2ea2d26/version/1432132230/image.png)](https://creativecommons.org/licenses/by/4.0/deed.ja)  [CC BY](https://creativecommons.org/licenses/by/4.0/) [IchigoJam](http://ichigojam.net/) / [Tamakichi-San](https://github.com/Tamakichi)
