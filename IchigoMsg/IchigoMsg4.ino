@@ -1,18 +1,18 @@
 /*
  * IchigoMsg v 0.93  8x8ドットマトリックスLEDメッセージ arduino pro mini バージョン
  *  2016/9/30 by たま吉さん 
+ *  2016/10/06 LEDドットマトリックスのピン設定部の修正
  *
  
 <ライセンスにおける注意事項>
-  本ライブラリのフォントデータは IchigoJam 1.2.1 のフォントデータを使用しています。
-  IchigoJam のフォントが CC BY ライセンスを明示しています。（CC BY IchigoJam)
-  そのため、本ライブラリもこのライセンスを継承し、CC BY IchigoJam で提供いたします。
-  営利目的も含めて自由にご利用いただけますが（書籍などでのご利用も構いません）、
-  ライセンスを含めた著作表記は「CC BY IchigoJam」です。
-  紙面など URL をリンクできない場合は、リンクを URL 表記にして下さい。
-  「CC BY IchigoJam http://ichigojam.net/ 」
+ 本プログラムのフォントデータの一部に IchigoJam 1.2.1 のフォントデータを使用しています。
+ IchigoJam のフォントが CC BY ライセンスを明示しています。（CC BY IchigoJam)
+ そのため、本プログラムもこのライセンスを継承し、CC BYで公開いたします。
+ 営利目的も含めて自由にご利用いただけますが（書籍などでのご利用も構いません）、
+ ライセンスを含めた著作表記は「CC BY IchigoJam / Tamakichi-San」です。
+ 紙面など URL をリンクできない場合は、リンクを URL 表記にして下さい。
+ 「CC BY IchigoJam http://ichigojam.net/ Tamakichi-San https://github.com/Tamakichi」
  
- *
  */
 
 #include <avr/interrupt.h>
@@ -35,38 +35,31 @@
 //    OSL641501-BRA,1588BS,HSN-0788UR (アノードコモン)
 //***********************************************************
 
-// LEDマトリックス ピン定義
-
-// row側LEDタイプ(LED_ANODE or LED_CATHODE)
-#define LED_TYPE LED_ANODE
-
-// 横(COL)にArduino ピンNoの設定
-#define COL1  13
-#define COL2  7
-#define COL3  6
-#define COL4  16
-#define COL5  4
-#define COL6  15
-#define COL7  11
-#define COL8  10
-
-// 縦(ROW)にArduino ピンNoの設定
-#define ROW1  17
-#define ROW2  12
-#define ROW3  2
-#define ROW4  14
-#define ROW5  9
-#define ROW6  3
-#define ROW7  8
-#define ROW8  5
 
 //*****************************
 // グローバル変数
 //*****************************
 
-// COL,ROWのピン割り付けテーブル
-uint8_t col[8] = {COL1,COL2,COL3,COL4,COL5,COL6,COL7,COL8};
-uint8_t row[8] = {ROW1,ROW2,ROW3,ROW4,ROW5,ROW6,ROW7,ROW8};
+// LEDマトリックス ピン定義
+
+// HSN-0788UR (アノードコモン) Arduino puro mini 裏面取り付け
+/*
+#define LED_TYPE LED_ANODE // row側LEDタイプ(LED_ANODE or LED_CATHODE)
+uint8_t col[8] = {13,  7, 6, A2, 4, A1, 11, 10};  // COL 1-8 へのArduino 割り付けピン定義
+uint8_t row[8] = {A3, 12, 2, A0, 9,  3,  8,  5};  // ROW 1-8 へのArduino 割り付けピン定義
+*/
+
+// HSN-0788UR (カソードコモン) Arduino puro mini 表面取り付け
+#define LED_TYPE LED_ANODE // row側LEDタイプ(LED_ANODE or LED_CATHODE)
+uint8_t col[8] = {6,  12, 13,  3, A1,  4,  8,  9};  // COL 1-8 へのArduino 割り付けピン定義
+uint8_t row[8] = {2,   7, A3,  5, 10, A2, 11, A0};  // ROW 1-8 へのArduino 割り付けピン定義
+
+/*
+// MNA20SR092G (カソードコモン) Arduino puro mini 表面取り付け
+#define LED_TYPE LED_CATHODE // row側LEDタイプ(LED_ANODE or LED_CATHODE)
+uint8_t col[8] = {6,  12, 13,  3, A1,  4,  8,  9};  // COL 1-8 へのArduino 割り付けピン定義
+uint8_t row[8] = {2,   7, A3,  5, 10, A2, 11, A0};  // ROW 1-8 へのArduino 割り付けピン定義
+*/
 
 // LEDマトリックスオブジェクトの宣言 colピン配列, row ピン配列, LED row側タイプ, リフレッシュ間隔(usec)
 LED8x8Matrix mx(col, row, LED_TYPE, TIMERTICK);
