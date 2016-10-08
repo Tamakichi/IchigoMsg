@@ -1,6 +1,8 @@
 # IchigoMsg
 ![トップ画像](./img/top.jpg)  
 
+動画 https://youtu.be/qJ0TjbGspZU
+
 ## 概要  
 シリアル通信経由で表示内容の制御が簡単に行えるLEDドットマトリックスモジュールです。  
 ### 特徴  
