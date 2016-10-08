@@ -47,7 +47,7 @@ Arduino IDE 1.6.X
 使用する8x8ドットマトリックスLEDのピン割り付け仕様、タイプ(アノードコモン、カソードコモン) に  
 対応するために、スケッチの次の箇所を修正して下さい。  
 
-**IchigoMsg4.ino**   
+**IchigoMsg.ino**   
     
     #define LED_TYPE LED_CATHODE // row側LEDタイプ(LED_ANODE or LED_CATHODE)
     uint8_t col[8] = {6,  12, 13,  3, A1,  4,  8,  9};  // COL 1-8 へのArduino 割り付けピン定義
