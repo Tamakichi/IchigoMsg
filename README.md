@@ -44,6 +44,21 @@ Arduino IDE 1.6.X
 下記のライブラリを利用していますので、入手して利用可能な状態にして下さい。  
  **TimerOne http://playground.arduino.cc/Code/Timer1**
 
+使用する8x8ドットマトリックスLEDのピン割り付け仕様、タイプ(アノードコモン、カソードコモン) に  
+対応するために、スケッチの次の箇所を修正して下さい。  
+
+**IchigoMsg4.ino**   
+    
+    #define LED_TYPE LED_CATHODE // row側LEDタイプ(LED_ANODE or LED_CATHODE)
+    uint8_t col[8] = {6,  12, 13,  3, A1,  4,  8,  9};  // COL 1-8 へのArduino 割り付けピン定義
+    uint8_t row[8] = {2,   7, A3,  5, 10, A2, 11, A0};  // ROW 1-8 へのArduino 割り付けピン定義
+
+LED_TYPEには使用するドットマトリックスLEDのROW側のタイプ(アノードorカソード)を定義します。  
+![LED schematic](./img/LED_schematic.JPG)  
+上図では、ROWに接続するLEDの端子がカソードのですので**LED_TYPE**には**LED_CATHODE**を定義します。  
+
+またCOL1～8、ROW1～8に繋げるArduinoの端子番号をを配列**col**,**row**に定義します。  
+
 ## 使い方  
 
 ### IcigoMsgと接続する        
