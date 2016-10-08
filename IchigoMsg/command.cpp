@@ -38,7 +38,7 @@ CmdList cmdlist[] = {
   { "print",    CMD_PRINT,    -1 }, // 即時メッセージ表示
   { "play",     CMD_PLAY,    -10 }, // 再生設定
   { "stop",     CMD_STOP,      0 }, // 再生停止
-  { "list",     CMD_SETPLIST, -1 }, // 再生リストの登録
+  { "setlist",  CMD_SETPLIST, -1 }, // 再生リストの登録
   { "scrl",     CMD_SCRL,      2 }, // スクロール設定
   { "rotate",   CMD_ROTATE,    1 }, // 回転補正設定
   { "setmsga",  CMD_SETMSGA,  -2 }, // メッセージ追記登録
@@ -52,7 +52,7 @@ CmdList cmdlist[] = {
   { "load",     CMD_LOAD,      0 }, // 設定値取得
   { "mwait",    CMD_MWAIT,     1 }, // メッセージ表示間隔時間設定
   { "cwait",    CMD_CWAIT,     1 }, // 文字間隔時間設定
-  { "code",     CMD_SETCODE,   1 }, // 文字コード系設定
+  { "setcode",  CMD_SETCODE,   1 }, // 文字コード系設定
   { "setout",   CMD_OUTPUT,    1 }, // 出力形式設定
   { "setvalue", CMD_SETVALUE, -2 }, // 変数値設定
   { "getvalue", CMD_GETVALUE,-10 }, // 変数値取得
