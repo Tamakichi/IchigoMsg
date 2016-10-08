@@ -15,19 +15,27 @@
 ![システム構成](./img/system.jpg)
 
 ### ハードウェア  
+Arduino UNO、Arduino Pro mini等のATmega328搭載の互換機または、  
+ATmega328単体(Arduinoブートローダ書き込み済み)を対象とします。  
+クロックは16MHzを対象としていますが、8MHz(内部RCオシレータ)でも利用可能です。  
 
 ### 回路図  
+
 ### 部品一覧  
+
 ### 接続・結線    
 
 ### 開発環境  
 Arduino IDE 1.6.X   
 
-### コンパイル方法  
+### スケッチ(プログラムソース)   
 プログラムソースはフォルダ ichigoMsg/ 格納してます。  
-各自の開発環境 
+各自の開発環境に配置してArduino IDEにてロードして下さい。  
+下記のライブラリを利用していますので、入手して利用可能な状態にして下さい。  
+ **TimerOne http://playground.arduino.cc/Code/Timer1**
 
 ## 使い方  
+
 ### IcigoMsgと接続する        
 <通信条件>  
  - 通信速度 115200bps  
