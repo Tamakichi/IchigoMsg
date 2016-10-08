@@ -9,7 +9,6 @@
 - IchigoJam1.2.1のフォントが利用できます。  
 - ユーザーフォントの定義できます。  
 - 少ない部品、配線にて製作できます。  
- 
 
 ## システム構成  
 ![システム構成](./img/system.jpg)
@@ -19,7 +18,12 @@ Arduino UNO、Arduino Pro mini等のATmega328搭載の互換機または、
 ATmega328単体(Arduinoブートローダ書き込み済み)を対象とします。  
 クロックは16MHzを対象としていますが、8MHz(内部RCオシレータ)でも利用可能です。  
 
+Uno|pro mini|atmega328
+:--:|:--:|:--:|  
+![Uno](./img/uno_2.jpg)|![promini](./img/promini.jpg)|![promini](./img/atmega328.jpg)  
+
 ### 回路図  
+
 
 ### 部品一覧  
 
