@@ -22,12 +22,18 @@ Uno|pro mini|atmega328
 :--:|:--:|:--:|  
 ![Uno](./img/uno_2.jpg)|![promini](./img/promini.jpg)|![promini](./img/atmega328.jpg)  
 
-### 回路図  
+### 回路図・結線
+ドットマトリックスLEDの端子とArduinoの端子を直結するだけです。  
+スケッチにて割り付けの定義が可能なため、ドットマトリックスLEDの端子に  
+Arduinoの端子を自由に割り付けることが出来ます。  
+  
+![Uno結線図](./img/uno_connect.png) <img src="./img/ArduinoProMini.jpg" height="300">  
 
-
-### 部品一覧  
-
-### 接続・結線    
+### 必要部品一覧  
+・Arduino Uno 、Arduino UNO、Arduino Pro mini等のATmega328搭載の互換機  
+・8x8ドットマトリックスLED (アノードコモン、カソードコモンの両タイプに対応)  
+・線材  
+・USB-UARTモジュール(Arduino Pro mini,ATmega328単体利用時)  
 
 ### 開発環境  
 Arduino IDE 1.6.X   
