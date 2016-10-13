@@ -13,7 +13,7 @@
 - 少ない部品、配線にて製作できます。  
 
 ## システム構成  
-![システム構成](./img/system.jpg)
+![システム構成](./img/newsystem.jpg)
 
 ### ハードウェア  
 Arduino UNO、Arduino Pro mini等のATmega328搭載の互換機または、  
