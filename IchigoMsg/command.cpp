@@ -17,6 +17,7 @@
 #endif
 
 #define ICHIHO_LINE_DELAY 400 // IchigoJam用 シリアル出力行 DELAY 
+#define CMD_MAX_NEST_LEVEL  3 // コマンドネスト可能レベル
 
 // コマンドコード(最後のCOMMANDNUM は登録数として利用)
 typedef enum _cmdCode {
@@ -899,7 +900,7 @@ char* command::DrawLEDMatrix(char* pUTF8) {
 void command::playLEDMatrix(char* pUTF8) {
   static uint8_t cnt=0; // 間接ネスト防止
   char* t;
-  if (cnt == 2) {
+  if (cnt == CMD_MAX_NEST_LEVEL) {
     //Serial.print("@ERR deep nested:");Serial.println(pUTF8);
     return;
   }

@@ -17,7 +17,8 @@
 #define CMD_DONE_OK_RST   2   // コマンド処理正常(要リスタート)
 #define CMD_DONE_OK_STOP  3   // コマンド処理正常(要停止)
 
-#define MAXLINELEN  64       // シリアル受信最大長
+//#define MAXLINELEN  64       // シリアル受信最大長
+#define MAXLINELEN  128       // シリアル受信最大長
 #define FONTHEXLEN  16       // HEX形式フォントデータ長
 #define MAXDELAYTM  32767    // 最大待ち時間(文字、１文用）
 
