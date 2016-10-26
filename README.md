@@ -3,6 +3,8 @@
 
 動画 https://youtu.be/qJ0TjbGspZU
 
+※IchigoMsgの使い方等については、IchigoMsg Wiki [「IchigoMsg利用に関する情報」](https://github.com/Tamakichi/IchigoMsg/wiki)にも記載しています.こちらも参照下さい.  
+
 ## 概要  
 IchigoMsgはシリアル通信接続で8x8ドットマトリックスLED(単色)を制御するためモジュールです。  
 ### 特徴  
@@ -20,7 +22,7 @@ Arduino UNO、Arduino Pro mini等のATmega328搭載の互換機または、
 ATmega328単体(Arduinoブートローダ書き込み済み)を対象とします。  
 クロックは16MHzを対象としていますが、8MHz(内部RCオシレータ)でも利用可能です。  
 
-Uno|pro mini|atmega328
+Arduino Uno|Arduino pro mini|atmega328
 :--:|:--:|:--:|  
 ![Uno](./img/uno_2.jpg)|![promini](./img/promini.jpg)|![promini](./img/atmega328.jpg)  
 
@@ -84,9 +86,10 @@ LED_TYPEには使用するドットマトリックスLEDのROW側のタイプ(�
   ※ 改行は **CR+LF** 
   応答とは別にデータを出力するコマンドあり。
 
-### 
  
 ### 利用可能なコマンド   
+
+利用可能なコマンドに関しては、IchigoMsg Wiki [IchigoMsg利用に関する情報](https://github.com/Tamakichi/IchigoMsg/wiki)にて詳細を解説しています.  
 
 |コマンド名称|記述形式|説明|
 |:--|:--|:--|
@@ -119,6 +122,8 @@ LED_TYPEには使用するドットマトリックスLEDのROW側のタイプ(�
 
 ### メッセージ文に埋め込んで使えるコマンド(埋め込みコマンド)  
 
+利用可能な埋め込みコマンドに関しては、IchigoMsg Wiki [IchigoMsg利用に関する情報](https://github.com/Tamakichi/IchigoMsg/wiki)にて詳細を解説しています.  
+
 |機能名|コマンド|説明|
 |:--|:--|:--|:--|
 |登録フォント挿入|			{fフォント番号}|フォント番号(0～23)で指定したフォントを挿入表示する|
@@ -143,7 +148,10 @@ LED_TYPEには使用するドットマトリックスLEDのROW側のタイプ(�
 
 ## 利用例  
 ### Windowsからの利用  
+IchigoMsg Wikiの[「1.基本」](https://github.com/Tamakichi/IchigoMsg/wiki/1.-%E5%9F%BA%E6%9C%AC)を参照して下さい. スケッチのコンパイルから基本操作について解説しています.   
+
 ### IchigoJamからの利用  
+IchigoMsg Wikiの[「2.2. IchigoJamから利用する」]((https://github.com/Tamakichi/IchigoMsg/wiki/2.2.-IchigoJam%E3%81%8B%E3%82%89%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B)を参照して下さい.
 
 ## ライセンス    
 [![CC BY](https://image.jimcdn.com/app/cms/image/transf/none/path/s21a6c180c821a02c/image/i6ce073b1f2ea2d26/version/1432132230/image.png)](https://creativecommons.org/licenses/by/4.0/deed.ja)  [CC BY](https://creativecommons.org/licenses/by/4.0/) [IchigoJam](http://ichigojam.net/) / [Tamakichi-San](https://github.com/Tamakichi)
