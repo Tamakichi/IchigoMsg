@@ -151,7 +151,7 @@ LED_TYPEには使用するドットマトリックスLEDのROW側のタイプ(�
 IchigoMsg Wikiの[「1.基本」](https://github.com/Tamakichi/IchigoMsg/wiki/1.-%E5%9F%BA%E6%9C%AC)を参照して下さい. スケッチのコンパイルから基本操作について解説しています.   
 
 ### IchigoJamからの利用  
-IchigoMsg Wikiの[「2.2. IchigoJamから利用する」]((https://github.com/Tamakichi/IchigoMsg/wiki/2.2.-IchigoJam%E3%81%8B%E3%82%89%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B)を参照して下さい.
+IchigoMsg Wikiの[「2.2. IchigoJamから利用する」](https://github.com/Tamakichi/IchigoMsg/wiki/2.2.-IchigoJam%E3%81%8B%E3%82%89%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B)を参照して下さい.
 
 ## ライセンス    
 [![CC BY](https://image.jimcdn.com/app/cms/image/transf/none/path/s21a6c180c821a02c/image/i6ce073b1f2ea2d26/version/1432132230/image.png)](https://creativecommons.org/licenses/by/4.0/deed.ja)  [CC BY](https://creativecommons.org/licenses/by/4.0/) [IchigoJam](http://ichigojam.net/) / [Tamakichi-San](https://github.com/Tamakichi)
