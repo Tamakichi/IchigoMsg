@@ -20,7 +20,7 @@ IchigoMsgはシリアル通信接続で8x8ドットマトリックスLED(単色)
 ### ハードウェア  
 Arduino UNO、Arduino Pro mini等のATmega328搭載の互換機または、  
 ATmega328単体(Arduinoブートローダ書き込み済み)を対象とします。  
-クロックは16MHzを対象としていますが、8MHz(内部RCオシレータ)でも利用可能です。  
+クロックは16MHzを対象としています。8MHzではシリアル通信の動作が怪しいです。  
 
 Arduino Uno|Arduino pro mini|atmega328
 :--:|:--:|:--:|  
