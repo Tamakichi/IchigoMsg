@@ -1,7 +1,7 @@
 /*
  * コマンド管理クラス
- * 2016/09/30 by たま吉さん
- *
+ * 作成 2016/09/30 by たま吉さん
+ * 修正 2016/12/05 by たま吉さん、@play 3指定時のNGエラーのバグ修正
  */
 
 #include <string.h>
@@ -457,7 +457,7 @@ uint8_t command::readCommand(uint8_t& code) {
         if (flgSilent) {
           iHead(); printOutData(value, code);
         }
-      } else if (code == CMD_PLAY && value < 3) {
+      } else if (code == CMD_PLAY && value < 4) {
         md->conf.playmode = value;  // 再生モード設定
       } else if (code == CMD_LOGO && value < 2) {
         md->conf.startUpMode = value;
