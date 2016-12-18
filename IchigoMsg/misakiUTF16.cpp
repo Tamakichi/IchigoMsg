@@ -9,6 +9,7 @@
 // 2016/08/19 charUFT8toUTF16()の引数を変更
 // 2016/09/30 半角カナ全角変換テーブルをフラッシュメモリ配置に変更
 // 2016/12/15 findcode()の不具合対応(flg_stopの初期値を-1から0に訂正)
+// 2016/12/18 getFontDataByUTF16()で未登録フォント指定時に豆腐(□:0x25a1)を返すように修正
 //
 
 #include <avr/pgmspace.h>
@@ -97,24 +98,24 @@ uint16_t hkana2kana(uint16_t ucode) {
 //   戻り値: true 正常終了１, false 異常終了
 //
 boolean getFontDataByUTF16(byte* fontdata, uint16_t utf16) {
-  uint16_t code;
+  int code;
   unsigned long addr;
   byte n;
- 
+  boolean rc = false;
+
   //utf16 = hkana2kana(utf16);	// 半角カナは全角カナを利用する
 	
   if ( 0 > (code  = findcode(utf16))) { 
     // 該当するフォントが存在しない
-    return false;
+    code = findcode(0x25a1);  // add by Tamakichi,2016/12/18
+    rc = false;  
   }
   
   addr = code;
   addr<<=3;
-  n =  Sequential_read(addr, fontdata, (byte)FONT_LEN);
-  if (n!=8) {
-    return false;
-  }
-  return true;
+  if ( FONT_LEN  == Sequential_read(addr, fontdata, (byte)FONT_LEN) ) 
+    rc =  true;
+  return rc;
 }
 
 //

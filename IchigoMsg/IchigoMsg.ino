@@ -1,7 +1,8 @@
 /*
- * IchigoMsg v 0.94  8x8ドットマトリックスLEDメッセージ arduino pro mini バージョン
+ * IchigoMsg v 0.95  8x8ドットマトリックスLEDメッセージ arduino pro mini バージョン
  *  2016/9/30 by たま吉さん 
  *  2016/10/06 LEDドットマトリックスのピン設定部の修正
+ *  2016/12/18 未登録フォントコード指定時に豆腐(□)が表示されない不具合対応
  *
  
 <ライセンスにおける注意事項>
@@ -43,12 +44,12 @@
 // LEDマトリックス ピン定義
 
 // HSN-0788UR (アノードコモン) Arduino puro mini 裏面取り付け
-/*
+
 #define LED_TYPE LED_ANODE // row側LEDタイプ(LED_ANODE or LED_CATHODE)
 uint8_t col[8] = {13,  7, 6, A2, 4, A1, 11, 10};  // COL 1-8 へのArduino 割り付けピン定義
 uint8_t row[8] = {A3, 12, 2, A0, 9,  3,  8,  5};  // ROW 1-8 へのArduino 割り付けピン定義
-*/
 
+/*
 // HSN-0788UR (アノードコモン) Arduino puro mini 表面取り付け
 #define LED_TYPE LED_ANODE // row側LEDタイプ(LED_ANODE or LED_CATHODE)
 uint8_t col[8] = {6,  12, 13,  3, A1,  4,  8,  9};  // COL 1-8 へのArduino 割り付けピン定義
