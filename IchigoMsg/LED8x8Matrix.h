@@ -67,4 +67,3 @@ class LED8x8Matrix {
     void actionDraw(uint8_t* _bmp, uint8_t rotate, uint8_t scroll, uint8_t pitch, uint16_t cwait);
 };
 #endif
-

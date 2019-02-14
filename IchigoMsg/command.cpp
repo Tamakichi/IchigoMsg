@@ -753,7 +753,6 @@ char* command::doCtrlCommand(char* str) {
       md->conf.rotate = value;
       str++;
       return str;
-/* メモリ不足のため機能を封印
 //即時回転 *******************************************************************
     } else if (*str == '/') { 
       str++;
@@ -769,7 +768,7 @@ char* command::doCtrlCommand(char* str) {
       rotateBitmap(mx->pdata, DOTNUM, DOTNUM, value); 
       str++;
       return str; 
-*/
+
 // スクロール方向指定 **************************************************************
     } else if (*str == 's') { 
       str++;
@@ -926,4 +925,3 @@ void command::playLogo() {
     drawBitmap(font);
   }
 }
-
