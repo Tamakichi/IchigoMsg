@@ -127,4 +127,3 @@ void LED8x8Matrix::actionDraw(uint8_t* _bmp, uint8_t rotate, uint8_t scroll, uin
   if (cwait)
     delay(cwait);
 }
-

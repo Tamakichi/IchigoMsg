@@ -9,16 +9,17 @@
 // 修正 2016/09/17 by たま吉さん, scrollInFont()のmode 0時の無駄処理修正
 // 修正 2016/09/30 by たま吉さん, 配列値設定にmemmove,memsetに変更
 // 修正 2016/10/01 by たま吉さん, scrollInFont()の1ドットスクロール機能の追加
+// 修正 2019/02/14 by たま吉さん, フラッシュメモリ節約のため、座標int16_t/uint16_tをint8_t/uint8_tに変更（他の版と隔離）
 
 #include <Arduino.h>
 #include "libBitmap.h"
 // 任意サイズのビットマップにドットをセット
-void setDotAt(uint8_t* bmp, uint16_t w, uint16_t h, int16_t x, int16_t y, uint8_t d) {
+void setDotAt(uint8_t* bmp, uint8_t w, uint8_t h, int8_t x, int8_t y, uint8_t d) {
   if (x < 0 || y < 0 || x >= w || y >= h)
     return;
 
-  uint16_t bl = (w+7)>>3;           // 横必要バイト数
-  uint16_t addr = bl*y + (x>>3);    // 書込みアドレス
+  uint8_t bl = (w+7)>>3;           // 横必要バイト数
+  uint8_t addr = bl*y + (x>>3);    // 書込みアドレス
   if (d) 
     bmp[addr] |= 0x80>>(x%8);
   else
@@ -28,20 +29,20 @@ void setDotAt(uint8_t* bmp, uint16_t w, uint16_t h, int16_t x, int16_t y, uint8_
 
 // 任意サイズのビットマップに任意サイズのパターンをセット(OR書き)
 void setBitmapAt(
- uint8_t *dstbmp, uint16_t dstw, uint16_t dsth, int16_t dstx, int16_t dsty,
- uint8_t *srcbmp, uint16_t srcw, uint16_t srch)
+ uint8_t *dstbmp, uint8_t dstw, uint8_t dsth, int8_t dstx, int8_t dsty,
+ uint8_t *srcbmp, uint8_t srcw, uint8_t srch)
 {
   if (dsty+srch <=0 || dstx+srcw <=0 || dsty >= (uint8_t)dsth || dstx >= (uint8_t)dstw )
      return;
  
-  uint16_t src_bl = (srcw+7)>>3;      // パターンの横バイト数
-  uint16_t dst_bl = (dstw+7)>>3;      // バッファの横バイト数
-  uint16_t src_addr, dst_addr;
+  uint8_t src_bl = (srcw+7)>>3;      // パターンの横バイト数
+  uint8_t dst_bl = (dstw+7)>>3;      // バッファの横バイト数
+  uint8_t src_addr, dst_addr;
   uint8_t d;
   
-  for (int16_t y=0; y < srch; y++) {
+  for (int8_t y=0; y < srch; y++) {
     if (dsty+y < dsth) {
-      for (int16_t x=0; x < src_bl; x++) {
+      for (int8_t x=0; x < src_bl; x++) {
         if (((dstx/8)+x >=0) && ((dstx/8)+x < dst_bl)) {
           src_addr = src_bl*y + x;        
           dst_addr = dst_bl*(dsty+y) + (dstx/8)+x;
@@ -74,8 +75,8 @@ void setBitmapAt(
 //  w:   バッファの幅(ドット)
 //  h:   バッファの高さ(ドット)
 //  mode: B0001 左 ,B0010 右, B0100 上, B1000 下 … OR で同時指定可能
-void scrollBitmap(uint8_t *bmp, uint16_t w, uint16_t h, uint8_t mode) {
-  uint16_t bl = (w+7)>>3;           // 横バイト数
+void scrollBitmap(uint8_t *bmp, uint8_t w, uint8_t h, uint8_t mode) {
+  uint8_t bl = (w+7)>>3;            // 横バイト数
   uint16_t addr;                    // データアドレス
   uint8_t prv_bit;
   uint8_t d;
@@ -146,8 +147,8 @@ void scrollBitmap(uint8_t *bmp, uint16_t w, uint16_t h, uint8_t mode) {
 //  bmp: スクロール対象バッファ
 //  w:   バッファの幅(ドット)
 //  h:   バッファの高さ(ドット)
-void revBitmap(uint8_t *bmp, uint16_t w, uint16_t h) {
-  uint16_t bl = (w+7)>>3;           // 横バイト数
+void revBitmap(uint8_t *bmp, uint8_t w, uint8_t h) {
+  uint8_t bl = (w+7)>>3;            // 横バイト数
   uint16_t addr;                    // データアドレス
   uint8_t d;
   addr=0;
@@ -168,11 +169,11 @@ void revBitmap(uint8_t *bmp, uint16_t w, uint16_t h) {
 //  w:    バッファの幅(ドット)
 //  h:    バッファの高さ(ドット)
 //  x,y:  座標
-uint8_t getdotBitmap(uint8_t *bmp, uint16_t w, uint16_t h, int16_t x, int16_t y) {
+uint8_t getdotBitmap(uint8_t *bmp, uint8_t w, uint8_t h, int8_t x, int8_t y) {
   if (x>=w || y>=h || x <0 ||  y < 0) 
     return 0;
 
-  uint16_t bl = (w+7)>>3;           // 横バイト数    
+  uint8_t bl = (w+7)>>3;           // 横バイト数    
   uint8_t d;
   
   d = bmp[y*bl + (x/8)];
@@ -190,31 +191,31 @@ uint8_t getdotBitmap(uint8_t *bmp, uint16_t w, uint16_t h, int16_t x, int16_t y)
 //  w:    バッファの幅(ドット)
 //  h:    バッファの高さ(ドット)
 //  mode: B00 なし, B01 時計90° B10 時計180° B11 時計270°  
-void rotateBitmap(uint8_t *bmp, uint16_t w, uint16_t h, uint8_t mode) {
+void rotateBitmap(uint8_t *bmp, uint8_t w, uint8_t h, uint8_t mode) {
   if (mode == B00 || w != h || mode > B11)
    return;  
 
-  uint16_t bl = (w+7)>>3;           // 横バイト数  
+  uint8_t bl = (w+7)>>3;           // 横バイト数  
   uint8_t tmpbmp[h*bl];
   uint8_t d;
   memset(tmpbmp,0,h*bl);
   if (mode == B01) {  // 反時計90°
-    for (int16_t x = 0; x < w; x++) {
-      for (int16_t y = 0; y < h; y++) {
+    for (int8_t x = 0; x < w; x++) {
+      for (int8_t y = 0; y < h; y++) {
        d = getdotBitmap(bmp, w, h, x, y);
        setDotAt(tmpbmp, w, h, w-y-1, x, d);
       }
     }
   } else if (mode == B10) { // 反時計180°
-    for (int16_t x = 0; x < w; x++) {
-      for (int16_t y = 0; y < h; y++) {
+    for (int8_t x = 0; x < w; x++) {
+      for (int8_t y = 0; y < h; y++) {
        d = getdotBitmap(bmp, w, h, x, y);
        setDotAt(tmpbmp, w, h, w-x-1, h-y-1, d);
       }
     }
   } else {  // 反時計270°
-    for (int16_t x = 0; x < w; x++) {
-      for (int16_t y = 0; y < h; y++) {
+    for (int8_t x = 0; x < w; x++) {
+      for (int8_t y = 0; y < h; y++) {
        d = getdotBitmap(bmp, w, h, x, y);
        setDotAt(tmpbmp, w, h, y, h-x-1,d);
       }
@@ -224,17 +225,17 @@ void rotateBitmap(uint8_t *bmp, uint16_t w, uint16_t h, uint8_t mode) {
 }
 
 // 任意サイズのビットマップの任意領域のクリア
-void clearBitmapAt(uint8_t* bmp, uint16_t w, uint16_t h, int16_t x, int16_t y, uint8_t cw, uint8_t ch) {
+void clearBitmapAt(uint8_t* bmp, uint8_t w, uint8_t h, int8_t x, int8_t y, uint8_t cw, uint8_t ch) {
  
-  uint16_t bl = (w+7)>>3;           // 横バイト数  
+  uint8_t bl = (w+7)>>3;           // 横バイト数  
   uint8_t tmpbmp[h*bl];
   uint8_t d;
   
   //if (x < 0 || y < 0 || x+cw >w || y+ch >h)
   //  return;
  
-  for (uint16_t i=0; i <ch; i++) {
-    for (uint16_t j=0; j <cw; j++) {
+  for (uint8_t i=0; i <ch; i++) {
+    for (uint8_t j=0; j <cw; j++) {
        setDotAt(bmp, w, h, x+j, y+i, 0);
     }
   } 
@@ -242,8 +243,8 @@ void clearBitmapAt(uint8_t* bmp, uint16_t w, uint16_t h, int16_t x, int16_t y, u
 
 // 1文字分or1ドットスクロール挿入表示
 void scrollInFont(uint8_t*dst, uint8_t dw, uint8_t dh, uint8_t *src, uint8_t sw, uint8_t sh, uint16_t dt, uint8_t mode) {
-  int16_t px = 0,py = 0;
-  int16_t s;
+  int8_t px = 0,py = 0;
+  int8_t s;
 
   if (mode & 0x80) {
     s = 1; 
@@ -254,7 +255,7 @@ void scrollInFont(uint8_t*dst, uint8_t dw, uint8_t dh, uint8_t *src, uint8_t sw,
   } 
 
   if (mode) {
-    for (int16_t t = 0; t < s; t++) {
+    for (int8_t t = 0; t < s; t++) {
       scrollBitmap(dst, dw, dh, mode); 
       if (mode & B0001) px = sw-t-1;
       if (mode & B0010) px = t-sw+1;

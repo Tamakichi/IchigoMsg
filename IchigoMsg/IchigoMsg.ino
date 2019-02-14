@@ -26,7 +26,7 @@
 #include "ichigojamFont.h"
 
 #define TIMERTICK 330         // ダイナミック駆動リフレッシュ周期(μ秒)
-#define BPS       115200      // シリアル通信速度
+#define BPS       9600        // シリアル通信速度
 #define MY_SIGNATUR "IMG094"  // 内部EEPROM先頭シグニチャ
 
 //***********************************************************
@@ -98,4 +98,3 @@ void setup() {
 void loop() { 
   cm.run();  
 }
-
